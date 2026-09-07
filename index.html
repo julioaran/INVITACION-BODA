@@ -17,19 +17,19 @@
       overflow: hidden;
       animation: fadeIn 2s ease-in forwards;
       background-image: url('Copilot_20260906_224833.png'); /* usa el nombre exacto del archivo */
-      background-size: contain;
+      background-size: cover; /* se ajusta al tamaño de pantalla */
       background-position: center;
       background-repeat: no-repeat;
     }
 
     .button {
-      margin-bottom: 60px;
-      background-color: #000; /* color negro */
+      margin-bottom: 8vh; /* espacio proporcional al alto de pantalla */
+      background-color: #000;
       color: white;
-      padding: 20px 50px; /* más grande */
+      padding: 20px 60px;
       border-radius: 40px;
       text-decoration: none;
-      font-size: 1.4em; /* texto más grande */
+      font-size: 1.4em;
       font-weight: bold;
       letter-spacing: 1px;
       transition: transform 0.3s, background 0.3s;
@@ -50,6 +50,18 @@
     @keyframes fadeInButton {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ajustes para pantallas pequeñas */
+    @media (max-width: 600px) {
+      .button {
+        font-size: 1.1em;
+        padding: 15px 40px;
+        margin-bottom: 10vh;
+      }
+      body {
+        background-size: contain; /* evita que se corte la imagen */
+      }
     }
   </style>
 </head>
