@@ -5,25 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Julio & Katherin</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      background-color: #fff;
       font-family: 'Playfair Display', serif;
+      background: url('Copilot_20260906_224833.png') no-repeat center center;
+      background-size: cover; /* ocupa todo el alto y ancho */
       overflow: hidden;
       animation: fadeIn 2s ease-in forwards;
-      background-image: url('Copilot_20260906_224833.png'); /* usa el nombre exacto del archivo */
-      background-size: cover; /* se ajusta al tamaño de pantalla */
-      background-position: center;
-      background-repeat: no-repeat;
     }
 
     .button {
-      margin-bottom: 8vh; /* espacio proporcional al alto de pantalla */
+      margin-bottom: 5vh;
       background-color: #000;
       color: white;
       padding: 20px 60px;
@@ -52,15 +54,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Ajustes para pantallas pequeñas */
+    /* Ajuste para pantallas pequeñas */
     @media (max-width: 600px) {
       .button {
         font-size: 1.1em;
         padding: 15px 40px;
-        margin-bottom: 10vh;
-      }
-      body {
-        background-size: contain; /* evita que se corte la imagen */
+        margin-bottom: 8vh;
       }
     }
   </style>
