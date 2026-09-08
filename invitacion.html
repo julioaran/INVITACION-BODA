@@ -11,10 +11,8 @@
       color: #4a4a4a;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
+      overflow-y: scroll;
     }
 
     .container {
@@ -23,32 +21,43 @@
       align-items: center;
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       max-width: 800px;
+      margin: 50px auto;
       padding: 30px;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .image {
       flex: 1;
       text-align: center;
+      animation: slideInLeft 1.5s ease;
     }
 
     .image img {
       width: 100%;
       max-width: 300px;
       border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .image img:hover {
+      transform: scale(1.05);
     }
 
     .content {
       flex: 2;
       text-align: center;
       padding-left: 20px;
+      animation: slideInRight 1.5s ease;
     }
 
     h1 {
       font-size: 2.5em;
       color: #b38b59;
       margin-bottom: 10px;
+      animation: glow 2s infinite alternate;
     }
 
     h2 {
@@ -60,6 +69,7 @@
     p {
       font-size: 1.1em;
       margin: 10px 0;
+      line-height: 1.6;
     }
 
     .button {
@@ -71,12 +81,28 @@
       text-decoration: none;
       font-weight: bold;
       margin-top: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #7a5c3a;
+      transform: scale(1.1);
     }
 
     .footer {
       margin-top: 30px;
       font-size: 0.9em;
       color: #7a7a7a;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    /* ✅ Temporizador */
+    .countdown {
+      margin-top: 40px;
+      font-size: 1.5em;
+      color: #b38b59;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
     }
 
     @media (max-width: 700px) {
@@ -87,6 +113,27 @@
         max-width: 250px;
         margin-bottom: 20px;
       }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #b38b59; }
+      to { text-shadow: 0 0 20px #d4af37; }
     }
   </style>
 </head>
@@ -106,12 +153,41 @@
       <p><strong>Fecha:</strong> 20 de Octubre, 2026</p>
       <p><strong>Lugar:</strong> Jardines del Hotel Sucre</p>
       <p>Esperamos contar con tu presencia.</p>
-      <a href="#" class="button">Confirmar Asistencia</a>
+      <a href="https://maps.app.goo.gl/sBWYU5VJ2w6wE9KNA" target="_blank" class="button">
+        📍 Ubicación del Evento
+      </a>
       <div class="footer">
         <p>Invitación para: Invitado Especial</p>
         <p>Invitados: 2 | Código: XX001</p>
       </div>
+      <!-- ✅ Temporizador -->
+      <div class="countdown" id="countdown"></div>
     </div>
   </div>
+
+  <script>
+    // Fecha objetivo: 10 de diciembre de 2026
+    const targetDate = new Date("Dec 10, 2026 00:00:00").getTime();
+
+    const countdownElement = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdownElement.innerHTML = "🎉 ¡El gran día ha llegado!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `⏳ Faltan ${days} días, ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
